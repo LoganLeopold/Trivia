@@ -4,7 +4,7 @@ startButton.addEventListener('click', event => {
     event.preventDefault();
     document.querySelector('.startBox').style.display = 'none';
     document.querySelector('.gameBox').style.display = 'flex';
-};
+});
 
  
 
