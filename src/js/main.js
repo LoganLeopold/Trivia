@@ -3,7 +3,15 @@ var startButton = document.getElementsByClassName('.buttonStartGame');
 startButton.addEventListener('click', startGame);
  
  
-function startGame () {
+function startGame (event) {
+
+    event.preventDefault();
+
+    var count = 0;
+
+    var right = 0;
+
+    var wrong = 0;
 
     const questions = [
 
@@ -12,6 +20,7 @@ function startGame () {
             answer1: "62",
             answer2: "72",
             answer3: "82",
+            rightAnswer: "82",
           },
 
 
@@ -20,6 +29,7 @@ function startGame () {
             answer1: "Dr. Dre.",
             answer2: "Pharrell Williams",
             answer3: "The Weekend",
+            rightAnswer: "Pharrell Williams",
           },
 
           { questionNum: 3,
@@ -27,6 +37,7 @@ function startGame () {
             answer1: "Sting",
             answer2: "Nat King Cole",
             answer3: "Prince",
+            rightAnswer: "Sting",
           },
 
           { questionNum: 4,
@@ -34,6 +45,7 @@ function startGame () {
             answer1: "24",
             answer2: "16",
             answer3: "20",
+            rightAnswer: "16",
           },
 
           { questionNum: 5,
@@ -41,6 +53,7 @@ function startGame () {
             answer1: "Guitar",
             answer2: "Violin",
             answer3: "Piano",
+            rightAnswer: "Violin",
           },
 
           { questionNum: 6,
@@ -48,6 +61,7 @@ function startGame () {
             answer1: "62",
             answer2: "76",
             answer3: "88",
+            rightAnswer: "88",
           },
 
           { questionNum: 7,
@@ -55,6 +69,7 @@ function startGame () {
             answer1: "Lymphoma",
             answer2: "Lung Cancer",
             answer3: "Heart Disease",
+            rightAnswer: "Lymphoma",
           },
 
           { questionNum: 8,
@@ -62,6 +77,7 @@ function startGame () {
             answer1: "755",
             answer2: "200",
             answer3: "50",
+            rightAnswer: "200",
           },
 
           { questionNum: 9,
@@ -69,6 +85,7 @@ function startGame () {
             answer1: "Bob Dylan",
             answer2: "Marvin Gaye",
             answer3: "The Everly Brothers",
+            rightAnswer: "Bob Dylan",
           },
 
           { questionNum: 10,
@@ -76,15 +93,20 @@ function startGame () {
             answer1: "Transatlanticism",
             answer2: "Such Great Heights",
             answer3: "I Will Follow You Into The Dark",
+            rightAnswer: "Such Great Heights",
           },
 
     ]
 
-    var count = 0
-
     for (i = 0; i <= 10; i++) {
 
-     questions[i].   
+     document.querySelector('.gameQuestion').innerHTML(questions[i].questionAsk)   
+
+     document.querySelector("#answer1").innerHTML(questions[i].answer1)
+
+     document.querySelector("#answer2").innerHTML(questions[i].answer2)
+
+     document.querySelector("#answer3").innerHTML(questions[i].answer3)
 
     }
 
