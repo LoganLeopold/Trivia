@@ -1,0 +1,30 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+    background: yellow;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.startHeader {
+    background: lightblue;
+    display: block;
+    text-align: center;
+}
+
+.startBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+}
+
+.linkStartGame {
+    display: flex;
+    background: lightcoral;
+}
+
+.buttonStartGame {
+    background: transparent;
+}
