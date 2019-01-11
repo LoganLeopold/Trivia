@@ -1,4 +1,4 @@
-var startButton = document.getElementsByClassName('.buttonStartGame');
+var startButton = document.getElementsByClassName('buttonStartGame');
 
 startButton.addEventListener('click', startGame);
  
@@ -20,7 +20,7 @@ function startGame (event) {
             answer1: "62",
             answer2: "72",
             answer3: "82",
-            rightAnswer: "82",
+            rightAnswer: "82",      
           },
 
 
@@ -96,6 +96,8 @@ function startGame (event) {
             rightAnswer: "Such Great Heights",
           },
 
+           
+
     ]
 
     for (i = 0; i <= 10; i++) {
@@ -107,6 +109,10 @@ function startGame (event) {
      document.querySelector("#answer2").innerHTML(questions[i].answer2)
 
      document.querySelector("#answer3").innerHTML(questions[i].answer3)
+
+     var allAnswers = document.querySelectorAll('.gameAnswer');
+
+     console.log(allAnswers);
 
     }
 
