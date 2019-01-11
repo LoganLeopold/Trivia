@@ -11,20 +11,65 @@ body {
     background: lightblue;
     display: block;
     text-align: center;
+    font-size: 17vmin;
 }
 
 .startBox {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     background: white;
+    margin: 10vmin;
 }
 
 .linkStartGame {
     display: flex;
     background: lightcoral;
+    margin: 4vmin;
 }
 
 .buttonStartGame {
     background: transparent;
+    font-size: 4vmin;
 }
+
+/* /////////////////////------game.html styling------//////////////////////////// */
+
+.gameHeader {
+    background: lightblue;
+    display: block;
+    text-align: center;
+    font-size: 17vmin;
+}
+
+.gameBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    margin: 10vmin;
+}
+
+.gameQuestion {
+    display: block;
+    background: lightblue;
+    font-size: 4vmin;
+    margin: 2vmin;
+}
+
+.gameAnswer {
+    background: lightcoral;
+    margin: 2vmin;
+    font-size: 3vmin;
+}
+
+/* .gameAnswer2 {
+    background: green;
+    margin: 2vw;
+    font-size: 2vw;
+}
+
+.gameAnswer3 {
+    background: orange;
+    margin: 2vw;
+    font-size: 2vw;
+} */
