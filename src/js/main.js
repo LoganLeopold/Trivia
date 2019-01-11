@@ -1,8 +1,13 @@
-var startButton = document.getElementsByClassName('buttonStartGame');
+var startButton = document.querySelector('.buttonStartGame');
 
-startButton.addEventListener('click', startGame);
+startButton.addEventListener('click', event => {
+    event.preventDefault();
+    document.querySelector('.startBox').style.display = 'none';
+    document.querySelector('.gameBox').style.display = 'flex';
+};
+
  
- 
+
 function startGame (event) {
 
     event.preventDefault();
@@ -94,25 +99,27 @@ function startGame (event) {
             answer2: "Such Great Heights",
             answer3: "I Will Follow You Into The Dark",
             rightAnswer: "Such Great Heights",
-          },
-
-           
+          },           
 
     ]
+    const gameQuestionId = document.querySelector('#gameQuestion')
+console.log(gameQuestionId)
 
-    for (i = 0; i <= 10; i++) {
+    for (i = 0; i <= 9; i++) {
 
-     document.querySelector('.gameQuestion').innerHTML(questions[i].questionAsk)   
+      document.getElementById('gameQuestion').innerHTML = (questions[i].questionAsk)   
 
-     document.querySelector("#answer1").innerHTML(questions[i].answer1)
+      document.querySelectorAll("#answer1").innerHTML = (questions[i].answer1)
 
-     document.querySelector("#answer2").innerHTML(questions[i].answer2)
+      document.querySelectorAll("#answer2").innerHTML = (questions[i].answer2)
 
-     document.querySelector("#answer3").innerHTML(questions[i].answer3)
+      document.querySelectorAll("#answer3").innerHTML = (questions[i].answer3)
 
-     var allAnswers = document.querySelectorAll('.gameAnswer');
+      var allAnswers = document.querySelectorAll('.gameAnswer');
 
-     console.log(allAnswers);
+      function isRight() {
+
+      }
 
     }
 

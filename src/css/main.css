@@ -42,14 +42,14 @@ body {
 }
 
 .gameBox {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     background: white;
     margin: 10vmin;
 }
 
-.gameQuestion {
+#gameQuestion {
     display: block;
     background: lightblue;
     font-size: 4vmin;
