@@ -3,8 +3,8 @@ var startButton = document.querySelector('.buttonStartGame');
 startButton.addEventListener('click', event => {
     event.preventDefault();
     document.querySelector('.startBox').style.display = 'none';
-    document.querySelector('.gameBox').style.display = 'flex';
-    document.querySelector('.tallyBox').style.display = 'flex';
+    document.querySelector('.gameBox').style.display = 'grid';
+    document.querySelector('.tallyBox').style.display = 'inline';
     trivia();
 });
 
@@ -133,23 +133,15 @@ function answerListen () {
     
         event => {
             event.preventDefault();
-                console.log(event.target.innerHTML);
-                console.log(questions[count].rightAnswer);
-                console.log(count);
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
                 right++;
                 count++;
-                // console.log(event.target.innerHTML);
-                // console.log(questions[count].rightAnswer);
-                // console.log(count);
             } else {
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 wrong++;
                 count++;
-                // console.log(event.target.innerHTML);
-                // console.log(questions[count].rightAnswer)
-                // console.log(count);
+                
             }
             console.log(count)
             console.log(`${wrong} and ${right}`)
@@ -167,8 +159,6 @@ function tally () {
 function trivia () {
     presentQuestion();
     answerListen();
-    tally();
-    console.log(count)
 }
 
 function tally () {
@@ -178,4 +168,5 @@ function tally () {
 document.querySelector('.nextQuestion').addEventListener('click', () => {
     currentAnswers.forEach( answer => {answer.style.display = 'flex';});
     presentQuestion();
+    tally();
 })
