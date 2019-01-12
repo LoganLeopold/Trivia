@@ -111,6 +111,9 @@ var right = 0;
 
 var wrong = 0;
 
+var currentAnswers = document.querySelectorAll('.gameAnswer');
+
+
 
 function presentQuestion () {
 
@@ -124,36 +127,47 @@ function presentQuestion () {
 
 }
 
-// console.log(document.querySelectorAll('.gameAnswer'))
-
 function answerListen () {
-    
-    var currentAnswers = document.querySelectorAll('.gameAnswer');
 
     currentAnswers.forEach( answer => answer.addEventListener('click', 
     
         event => {
             event.preventDefault();
-            if (event.target.innerHTML = questions[count].rightAnswer) {
+            if (event.target.innerHTML === questions[count-1].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
                 right++;
+                count++;
+                console.log(event.target.innerHTML);
+                console.log(questions[count-1].rightAnswer);
+                console.log(count);
             } else {
                 alert('Ouch - another one bites the dust. Try again on the next question.');
-                wrong++
+                wrong++;
+                count++;
+                console.log(event.target.innerHTML);
+                console.log(questions[count-1].rightAnswer)
+                console.log(count);
             }
+            currentAnswers.forEach( answer => {answer.style.display = 'none';});
+            
         }
-
-    )
-  );
+      )
+   );
 }
+
+
 
 function trivia () {
     presentQuestion();
     answerListen();
+    tally();
 }
 
 function tally () {
-    document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`
+    document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
 }
 
-document.querySelector('.nextQuestion').addEventListener('click', () => {count++})
+document.querySelector('.nextQuestion').addEventListener('click', () => {
+    currentAnswers.forEach( answer => {answer.style.display = 'flex';});
+    trivia();
+})
