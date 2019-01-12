@@ -27,7 +27,6 @@ body {
     display: flex;
     justify-content: center;
     background: black;
-    /* border: 5vw solid lightcoral; */
     margin: 10vmin;
 }
 
@@ -39,8 +38,6 @@ body {
     font-family: 'royal_acidregular';
     color: red;
 }
-
-/* /////////////////////------Game Styling------//////////////////////////// */
 
 .gameHeader {
     background: white;
@@ -65,20 +62,32 @@ h1 {
 
 .gameBox {
     display: none;
-    justify-content: stretch;
+    grid-template-rows: 1fr;
+    grid-template-columns: 12fr;
     background: white;
-    margin: 0;
+    margin: 0 5vmin 0 5vmin;
 }
 
 #gameQuestion {
-    display: block;
-    text-align: center;
-    background: white;
-    font-size: 4vmin;
     margin: 4vmin;
+    background: white;
+    grid-column: 1 / span 6;
+    flex-wrap: wrap;
+
+    text-align: left;
+    font-size: 4vmin;
     font-family: 'royal_acidregular';
     font-weight: 50;
     color: red;
+    
+}
+
+.answerContainer {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    grid-column: 7 / span 4;
 }
 
 .gameAnswer {
@@ -91,10 +100,14 @@ h1 {
     color: red;
 }
 
-.answerContainer {
+.nextQuestion {
+    border: none;
     background: white;
-    display: flex;
-    justify-content: center;
+    margin: 2vmin;
+    font-size: 3vmin;
+    font-family: 'royal_acidregular';
+    color: red;
+    grid-column: 11 / span 2;
 }
 
 .tallyBox {
@@ -107,11 +120,3 @@ h1 {
     color: red;
 }
 
-.nextQuestion {
-        border: none;
-        background: white;
-        margin: 2vmin;
-        font-size: 3vmin;
-        font-family: 'royal_acidregular';
-        color: red;
-}
