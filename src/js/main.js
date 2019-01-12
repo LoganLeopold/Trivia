@@ -105,7 +105,7 @@ const questions = [
 
 ]
 
-var count = 1;
+var count = 0;
 
 var right = 0;
 
@@ -117,13 +117,13 @@ var currentAnswers = document.querySelectorAll('.gameAnswer');
 
 function presentQuestion () {
 
-    document.querySelector('#gameQuestion').innerHTML = (questions[count-1].questionAsk)
+    document.querySelector('#gameQuestion').innerHTML = (questions[count].questionAsk)
 
-    document.querySelector("#answer1").innerHTML = (questions[count-1].answer1)
+    document.querySelector("#answer1").innerHTML = (questions[count].answer1)
 
-    document.querySelector("#answer2").innerHTML = (questions[count-1].answer2)
+    document.querySelector("#answer2").innerHTML = (questions[count].answer2)
 
-    document.querySelector("#answer3").innerHTML = (questions[count-1].answer3)
+    document.querySelector("#answer3").innerHTML = (questions[count].answer3)
 
 }
 
@@ -133,21 +133,26 @@ function answerListen () {
     
         event => {
             event.preventDefault();
-            if (event.target.innerHTML === questions[count-1].rightAnswer) {
+                console.log(event.target.innerHTML);
+                console.log(questions[count].rightAnswer);
+                console.log(count);
+            if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
                 right++;
                 count++;
-                console.log(event.target.innerHTML);
-                console.log(questions[count-1].rightAnswer);
-                console.log(count);
+                // console.log(event.target.innerHTML);
+                // console.log(questions[count].rightAnswer);
+                // console.log(count);
             } else {
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 wrong++;
                 count++;
-                console.log(event.target.innerHTML);
-                console.log(questions[count-1].rightAnswer)
-                console.log(count);
+                // console.log(event.target.innerHTML);
+                // console.log(questions[count].rightAnswer)
+                // console.log(count);
             }
+            console.log(count)
+            console.log(`${wrong} and ${right}`)
             currentAnswers.forEach( answer => {answer.style.display = 'none';});
             
         }
@@ -155,12 +160,15 @@ function answerListen () {
    );
 }
 
-
+function tally () {
+    document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
+}
 
 function trivia () {
     presentQuestion();
     answerListen();
     tally();
+    console.log(count)
 }
 
 function tally () {
@@ -169,5 +177,5 @@ function tally () {
 
 document.querySelector('.nextQuestion').addEventListener('click', () => {
     currentAnswers.forEach( answer => {answer.style.display = 'flex';});
-    trivia();
+    presentQuestion();
 })
