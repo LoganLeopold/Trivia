@@ -18,18 +18,14 @@ body {
     display: flex;
     justify-content: center;
     background: white;
+    border: 5vw solid lightcoral;
     margin: 10vmin;
-}
-
-.linkStartGame {
-    display: flex;
-    background: lightcoral;
-    margin: 4vmin;
 }
 
 .buttonStartGame {
     background: transparent;
     font-size: 4vmin;
+    margin: 2.5vw;
 }
 
 /* /////////////////////------game.html styling------//////////////////////////// */

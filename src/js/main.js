@@ -6,11 +6,102 @@ startButton.addEventListener('click', event => {
     document.querySelector('.gameBox').style.display = 'flex';
 });
 
- 
+const questions = [
 
-function startGame (event) {
+    {
+        questionNum: 1,
+        questionAsk: "How old was Ol' Blue Eyes when he passed?",
+        answer1: "62",
+        answer2: "72",
+        answer3: "82",
+        rightAnswer: "82",
+    },
 
-    event.preventDefault();
+
+    {
+        questionNum: 2,
+        questionAsk: "Who sings the hook on Kendrick Lamar's 'Alright?'",
+        answer1: "Dr. Dre.",
+        answer2: "Pharrell Williams",
+        answer3: "The Weekend",
+        rightAnswer: "Pharrell Williams",
+    },
+
+    {
+        questionNum: 3,
+        questionAsk: "Who is Gordon Matthew Thomas Sumner?",
+        answer1: "Sting",
+        answer2: "Nat King Cole",
+        answer3: "Prince",
+        rightAnswer: "Sting",
+    },
+
+    {
+        questionNum: 4,
+        questionAsk: "How old was Bono when U2 collectively agree they formed?",
+        answer1: "24",
+        answer2: "16",
+        answer3: "20",
+        rightAnswer: "16",
+    },
+
+    {
+        questionNum: 5,
+        questionAsk: "The Stradivarius is a make of which kind of instrument?",
+        answer1: "Guitar",
+        answer2: "Violin",
+        answer3: "Piano",
+        rightAnswer: "Violin",
+    },
+
+    {
+        questionNum: 6,
+        questionAsk: "How many keys are on the modern concert piano?",
+        answer1: "62",
+        answer2: "76",
+        answer3: "88",
+        rightAnswer: "88",
+    },
+
+    {
+        questionNum: 7,
+        questionAsk: "How did Joey Ramone pass away?",
+        answer1: "Lymphoma",
+        answer2: "Lung Cancer",
+        answer3: "Heart Disease",
+        rightAnswer: "Lymphoma",
+    },
+
+    {
+        questionNum: 8,
+        questionAsk: "How many guitars are a part of John Mayer's collection?",
+        answer1: "755",
+        answer2: "200",
+        answer3: "50",
+        rightAnswer: "200",
+    },
+
+    {
+        questionNum: 9,
+        questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
+        answer1: "Bob Dylan",
+        answer2: "Marvin Gaye",
+        answer3: "The Everly Brothers",
+        rightAnswer: "Bob Dylan",
+    },
+
+    {
+        questionNum: 10,
+        questionAsk: "Ben Gibbert of Death Cab For Cutie is famous for what other hit song released through another project?",
+        answer1: "Transatlanticism",
+        answer2: "Such Great Heights",
+        answer3: "I Will Follow You Into The Dark",
+        rightAnswer: "Such Great Heights",
+    },
+
+]
+
+function trivia() {
 
     var count = 0;
 
@@ -18,109 +109,27 @@ function startGame (event) {
 
     var wrong = 0;
 
-    const questions = [
-
-          { questionNum: 1,
-            questionAsk: "How old was Ol' Blue Eyes when he passed?",
-            answer1: "62",
-            answer2: "72",
-            answer3: "82",
-            rightAnswer: "82",      
-          },
-
-
-          { questionNum: 2,
-            questionAsk: "Who sings the hook on Kendrick Lamar's 'Alright?'",
-            answer1: "Dr. Dre.",
-            answer2: "Pharrell Williams",
-            answer3: "The Weekend",
-            rightAnswer: "Pharrell Williams",
-          },
-
-          { questionNum: 3,
-            questionAsk: "Who is Gordon Matthew Thomas Sumner?",
-            answer1: "Sting",
-            answer2: "Nat King Cole",
-            answer3: "Prince",
-            rightAnswer: "Sting",
-          },
-
-          { questionNum: 4,
-            questionAsk: "How old was Bono when U2 collectively agree they formed?",
-            answer1: "24",
-            answer2: "16",
-            answer3: "20",
-            rightAnswer: "16",
-          },
-
-          { questionNum: 5,
-            questionAsk: "The Stradivarius is a make of which kind of instrument?",
-            answer1: "Guitar",
-            answer2: "Violin",
-            answer3: "Piano",
-            rightAnswer: "Violin",
-          },
-
-          { questionNum: 6,
-            questionAsk: "How many keys are on the modern concert piano?",
-            answer1: "62",
-            answer2: "76",
-            answer3: "88",
-            rightAnswer: "88",
-          },
-
-          { questionNum: 7,
-            questionAsk: "How did Joey Ramone pass away?",
-            answer1: "Lymphoma",
-            answer2: "Lung Cancer",
-            answer3: "Heart Disease",
-            rightAnswer: "Lymphoma",
-          },
-
-          { questionNum: 8,
-            questionAsk: "How many guitars are a part of John Mayer's collection?",
-            answer1: "755",
-            answer2: "200",
-            answer3: "50",
-            rightAnswer: "200",
-          },
-
-          { questionNum: 9,
-            questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
-            answer1: "Bob Dylan",
-            answer2: "Marvin Gaye",
-            answer3: "The Everly Brothers",
-            rightAnswer: "Bob Dylan",
-          },
-
-          { questionNum: 10,
-            questionAsk: "Ben Gibbert of Death Cab For Cutie is famous for what other hit song released through another project?",
-            answer1: "Transatlanticism",
-            answer2: "Such Great Heights",
-            answer3: "I Will Follow You Into The Dark",
-            rightAnswer: "Such Great Heights",
-          },           
-
-    ]
-    const gameQuestionId = document.querySelector('#gameQuestion')
-console.log(gameQuestionId)
-
     for (i = 0; i <= 9; i++) {
 
-      document.getElementById('gameQuestion').innerHTML = (questions[i].questionAsk)   
+        document.querySelector('#gameQuestion').innerHTML = (questions[i].questionAsk)
 
-      document.querySelectorAll("#answer1").innerHTML = (questions[i].answer1)
+        document.querySelector("#answer1").innerHTML = (questions[i].answer1)
 
-      document.querySelectorAll("#answer2").innerHTML = (questions[i].answer2)
+        document.querySelector("#answer2").innerHTML = (questions[i].answer2)
 
-      document.querySelectorAll("#answer3").innerHTML = (questions[i].answer3)
+        document.querySelector("#answer3").innerHTML = (questions[i].answer3)
 
-      var allAnswers = document.querySelectorAll('.gameAnswer');
+        // console.log((questions[i].questionAsk))
+        console.log(document.getElementById('gameQuestion'))
 
-      function isRight() {
+        // var allAnswers = document.querySelectorAll('.gameAnswer');
 
-      }
+        // function isRight() {
 
-    }
+        }
 
 }
+
+
+
+trivia();
