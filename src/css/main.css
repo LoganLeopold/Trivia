@@ -28,7 +28,7 @@ body {
     margin: 2.5vw;
 }
 
-/* /////////////////////------game.html styling------//////////////////////////// */
+/* /////////////////////------Game Styling------//////////////////////////// */
 
 .gameHeader {
     background: lightblue;
@@ -58,14 +58,17 @@ body {
     font-size: 3vmin;
 }
 
-/* .gameAnswer2 {
-    background: green;
-    margin: 2vw;
-    font-size: 2vw;
+.answerContainer {
+    display: flex;
+    justify-content: center;
 }
 
-.gameAnswer3 {
-    background: orange;
-    margin: 2vw;
-    font-size: 2vw;
-} */
+.tallyBox {
+    display: none;
+    align-content: right;
+    height: 10vw;
+    width: 20vw;
+    background: lightyellow;
+    border: 5px solid lightcoral;
+}
+

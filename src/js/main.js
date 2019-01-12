@@ -4,7 +4,11 @@ startButton.addEventListener('click', event => {
     event.preventDefault();
     document.querySelector('.startBox').style.display = 'none';
     document.querySelector('.gameBox').style.display = 'flex';
+    document.querySelector('.tallyBox').style.display = 'flex';
+    trivia();
 });
+
+// The above is not going to be needed after the first page -until_reset-
 
 const questions = [
 
@@ -101,35 +105,51 @@ const questions = [
 
 ]
 
-function trivia() {
+var count = 1;
 
-    var count = 0;
+var right = 0;
 
-    var right = 0;
+var wrong = 0;
 
-    var wrong = 0;
 
-    for (i = 0; i <= 9; i++) {
+function presentQuestion () {
 
-        document.querySelector('#gameQuestion').innerHTML = (questions[i].questionAsk)
+    document.querySelector('#gameQuestion').innerHTML = (questions[count-1].questionAsk)
 
-        document.querySelector("#answer1").innerHTML = (questions[i].answer1)
+    document.querySelector("#answer1").innerHTML = (questions[count-1].answer1)
 
-        document.querySelector("#answer2").innerHTML = (questions[i].answer2)
+    document.querySelector("#answer2").innerHTML = (questions[count-1].answer2)
 
-        document.querySelector("#answer3").innerHTML = (questions[i].answer3)
-
-        // console.log((questions[i].questionAsk))
-        console.log(document.getElementById('gameQuestion'))
-
-        // var allAnswers = document.querySelectorAll('.gameAnswer');
-
-        // function isRight() {
-
-        }
+    document.querySelector("#answer3").innerHTML = (questions[count-1].answer3)
 
 }
 
+// console.log(document.querySelectorAll('.gameAnswer'))
 
+function answerListen () {
+    document.querySelectorAll('.gameAnswer').addEventListener('click', 
+    
+        event => {
+            event.preventDefault();
+            if (event.target.innerHTML = questions[count].rightAnswer) {
+                alert('Way to go - you know you music! Move to the next question.');
+                right++;
+            } else {
+                alert('Ouch - another one bites the dust. Try again on the next question.');
+                wrong++
+            }
+        }
 
-trivia();
+    );
+}
+
+function trivia () {
+    presentQuestion();
+    answerListen();
+}
+
+function tally () {
+    document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`
+}
+
+document.querySelector('.nextQuestion').addEventListener('click', () => {count++})
