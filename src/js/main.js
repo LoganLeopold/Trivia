@@ -127,7 +127,10 @@ function presentQuestion () {
 // console.log(document.querySelectorAll('.gameAnswer'))
 
 function answerListen () {
-    document.querySelectorAll('.gameAnswer').addEventListener('click', 
+    
+    var currentAnswers = document.querySelectorAll('.gameAnswer');
+
+    currentAnswers.forEach( answer => answer.addEventListener('click', 
     
         event => {
             event.preventDefault();
@@ -140,7 +143,8 @@ function answerListen () {
             }
         }
 
-    );
+    )
+  );
 }
 
 function trivia () {
