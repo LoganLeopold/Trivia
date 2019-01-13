@@ -137,42 +137,26 @@ function answerListen() {
             console.log(event.target)
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
-                currentAnswers.forEach(answer => { 
-                    if (questions[count].rightAnswer === answer.innerHTML) {
-                        answer.style.background = 'black';
-                    };
-                    answer.style["pointer-events"] = 'none';                    
-                });
+                event.target.style.background = 'white';
+                event.target.style.color = 'red';
+                event.target.style["font-size"] = '4.5vmin';
+                answer.style["pointer-events"] = 'none';                      
             } else {  
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 currentAnswers.forEach(answer => { 
                     if (questions[count].rightAnswer === answer.innerHTML) {
-                        answer.style.background = 'black';   
+                        answer.style.background = 'white';
+                        answer.style.color = 'red';
+                        answer.style["font-size"] = '4.5vmin';     
                     }
+                    event.target.style.background = 'black';
+                    event.target.style.color = 'white';
                     answer.style["pointer-events"] = 'none';
                      });
             }
-            if (answer = event.target) {
-                console.log(event.target)
-                event.target.background = 'white';
-                event.target.color = 'black';  
-            } 
             document.querySelector('.nextQuestion').style.display = 'block';
         }) 
     )}
-
-    // currentAnswers.forEach( answer => {
-    //     if (questions[count].rightAnswer === answer.innerHTML) {
-    //         answer.style.background = 'black;';
-    //         console.log(answer);
-    //         console.log(questions[count].rightAnswer);
-    //     console.log(answer.innerHTML);
-    //     }
-    // }) 
-
-function tally() {
-    document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
-}
 
 function trivia() {
     presentQuestion();
@@ -193,5 +177,8 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
     })
     document.querySelector('.nextQuestion').style.display = 'none';
     presentQuestion();
+    currentAnswers.forEach( answer => {
+        answer.style['font-size'] = '3vmin'
+    })
     // tally();
 })
