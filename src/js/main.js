@@ -1,12 +1,15 @@
+
 var startButton = document.querySelector('.buttonStartGame');
 
 startButton.addEventListener('click', event => {
     event.preventDefault();
     document.querySelector('.startBox').style.display = 'none';
-    document.querySelector('.gameBox').style.display = 'grid';
+    document.querySelector('.gameBox').style.display = 'flex';
     document.querySelector('.tallyBox').style.display = 'inline';
+    // document.querySelector('.nextQuestion').style.display = 'none';
     trivia();
 });
+
 
 // The above is not going to be needed after the first page -until_reset-
 
@@ -113,9 +116,7 @@ var wrong = 0;
 
 var currentAnswers = document.querySelectorAll('.gameAnswer');
 
-
-
-function presentQuestion () {
+function presentQuestion() {
 
     document.querySelector('#gameQuestion').innerHTML = (questions[count].questionAsk)
 
@@ -127,46 +128,71 @@ function presentQuestion () {
 
 }
 
-function answerListen () {
+function answerListen() {
 
-    currentAnswers.forEach( answer => answer.addEventListener('click', 
-    
-        event => {
+    currentAnswers.forEach(answer => answer.addEventListener('click',
+
+        event => {            
             event.preventDefault();
+            console.log(event.target)
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
-                right++;
-                count++;
-            } else {
+                currentAnswers.forEach(answer => { 
+                    if (questions[count].rightAnswer === answer.innerHTML) {
+                        answer.style.background = 'black';
+                    }
+                    answer.style["pointer-events"] = 'none';
+                    document.querySelector('.nextQuestion').style.display = 'visible';
+                });
+            } else {  
                 alert('Ouch - another one bites the dust. Try again on the next question.');
-                wrong++;
-                count++;
-                
+                currentAnswers.forEach(answer => { 
+                    if (questions[count].rightAnswer === answer.innerHTML) {
+                        answer.style.background = 'black';   
+                    }
+                    answer.style["pointer-events"] = 'none';
+                    document.querySelector('.nextQuestion').style.display = 'visible';
+                     });
             }
-            console.log(count)
-            console.log(`${wrong} and ${right}`)
-            currentAnswers.forEach( answer => {answer.style.display = 'none';});
-            
-        }
-      )
-   );
-}
+            if (answer = event.target) {
+                console.log(event.target)
+                event.target.background = 'white';
+                event.target.color = 'black';  
+            } 
+        }) 
+    )}
 
-function tally () {
+    // currentAnswers.forEach( answer => {
+    //     if (questions[count].rightAnswer === answer.innerHTML) {
+    //         answer.style.background = 'black;';
+    //         console.log(answer);
+    //         console.log(questions[count].rightAnswer);
+    //     console.log(answer.innerHTML);
+    //     }
+    // }) 
+
+function tally() {
     document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
 }
 
-function trivia () {
+function trivia() {
     presentQuestion();
     answerListen();
 }
 
-function tally () {
+function tally() {
     document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
 }
 
 document.querySelector('.nextQuestion').addEventListener('click', () => {
-    currentAnswers.forEach( answer => {answer.style.display = 'flex';});
+    currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
+    wrong++;
+    count++;
+    currentAnswers.forEach(answer => { 
+        answer.style.background = 'red';
+        answer.style.color = 'white';     
+    })
+    document.querySelector('.nextQuestion').style.display = 'none';
     presentQuestion();
-    tally();
+    // tally();
 })

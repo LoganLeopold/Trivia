@@ -19,7 +19,7 @@
 body {
     background: white;
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     flex-direction: column;
 }
 
@@ -34,7 +34,7 @@ body {
     border: none;
     background: transparent;
     font-size: 4vmin;
-    margin: 2.5vw;
+    margin: 2.5vmin;
     font-family: 'royal_acidregular';
     color: red;
 }
@@ -43,7 +43,7 @@ body {
     background: white;
     display: block;
     text-align: center;
-    margin: 3vw 0 0 0;
+    margin: 3vmin 0 0 0;
     font-size: 17vmin;
     font-family: 'royal_acidregular';
     color: red;
@@ -52,8 +52,8 @@ body {
 h1 {
     background: white;
     display: block;
+    margin: -1.5vmin 0 7vmin 0;
     text-align: center;
-    padding: -15px 0 2vw 0;
     font-size: 2.5vmin;
     font-family: Arial, Helvetica, sans-serif;
     color: #f72c3a; 
@@ -62,52 +62,62 @@ h1 {
 
 .gameBox {
     display: none;
-    grid-template-rows: 1fr;
-    grid-template-columns: 12fr;
-    background: white;
-    margin: 0 5vmin 0 5vmin;
+    justify-content: center;
+    flex-direction: column;
+    /* grid-template-rows: 1fr;
+    grid-template-columns: repeat(12, 1fr); */
+    background: red;
+    
+    /* margin: 12vmin; */
 }
 
 #gameQuestion {
     margin: 4vmin;
-    background: white;
-    grid-column: 1 / span 6;
-    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background: red;
+    /* grid-column: 1 / span 4; */
+    
 
     text-align: left;
     font-size: 4vmin;
     font-family: 'royal_acidregular';
     font-weight: 50;
-    color: red;
-    
+    color: white;
 }
 
 .answerContainer {
-    background: white;
+    background: red;
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
-    grid-column: 7 / span 4;
+    justify-content: center;
+    /* grid-column: 5 / span 4; */
 }
 
 .gameAnswer {
+    display: block;
     border: none;
-    background: white;
-    margin: 2vmin;
+    background: red;
+    margin-top: 2vmin;
+    align-content: center;
+    margin-bottom: 2vmin;
+    text-align: center;
     font-size: 3vmin;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
-    color: red;
+    color: white;
 }
 
 .nextQuestion {
     border: none;
-    background: white;
-    margin: 2vmin;
+    background: red;
+    margin: 4vmin;
     font-size: 3vmin;
     font-family: 'royal_acidregular';
-    color: red;
-    grid-column: 11 / span 2;
+    color: white;
+    /* display: none; */
+    /* grid-column: 9 / span 4; */
 }
 
 .tallyBox {
