@@ -141,7 +141,16 @@ function answerListen() {
                 event.target.style.color = 'red';
                 event.target.style["font-size"] = '4.5vmin';
                 answer.style["pointer-events"] = 'none';   
-                right++;                   
+                right++;
+                currentAnswers.forEach( answer => 
+                    {answer.addEventListener('keydown', function (event) {
+                      if (event.which === 13) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        return false;
+                      }
+                    })
+                });                
             } else {  
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 currentAnswers.forEach(answer => { 
@@ -153,8 +162,17 @@ function answerListen() {
                     event.target.style.background = 'black';
                     event.target.style.color = 'white';
                     answer.style["pointer-events"] = 'none';
-                     });
-                wrong++;
+                    currentAnswers.forEach( answer => 
+                        {answer.addEventListener('keydown', function (event) {
+                          if (event.which === 13) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            return false;
+                          }
+                        })
+                    });    
+                  });
+                wrong++; 
             }
             document.querySelector('.nextQuestion').style.display = 'block';
         }) 
