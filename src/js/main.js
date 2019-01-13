@@ -6,7 +6,7 @@ startButton.addEventListener('click', event => {
     document.querySelector('.startBox').style.display = 'none';
     document.querySelector('.gameBox').style.display = 'flex';
     document.querySelector('.tallyBox').style.display = 'inline';
-    // document.querySelector('.nextQuestion').style.display = 'none';
+    tally();
     trivia();
 });
 
@@ -140,7 +140,8 @@ function answerListen() {
                 event.target.style.background = 'white';
                 event.target.style.color = 'red';
                 event.target.style["font-size"] = '4.5vmin';
-                answer.style["pointer-events"] = 'none';                      
+                answer.style["pointer-events"] = 'none';   
+                right++;                   
             } else {  
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 currentAnswers.forEach(answer => { 
@@ -153,6 +154,7 @@ function answerListen() {
                     event.target.style.color = 'white';
                     answer.style["pointer-events"] = 'none';
                      });
+                wrong++;
             }
             document.querySelector('.nextQuestion').style.display = 'block';
         }) 
@@ -169,7 +171,6 @@ function tally() {
 
 document.querySelector('.nextQuestion').addEventListener('click', () => {
     currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-    wrong++;
     count++;
     currentAnswers.forEach(answer => { 
         answer.style.background = 'red';
@@ -180,5 +181,5 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
     currentAnswers.forEach( answer => {
         answer.style['font-size'] = '3vmin'
     })
-    // tally();
+    tally();
 })
