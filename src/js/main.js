@@ -140,9 +140,8 @@ function answerListen() {
                 currentAnswers.forEach(answer => { 
                     if (questions[count].rightAnswer === answer.innerHTML) {
                         answer.style.background = 'black';
-                    }
-                    answer.style["pointer-events"] = 'none';
-                    document.querySelector('.nextQuestion').style.display = 'visible';
+                    };
+                    answer.style["pointer-events"] = 'none';                    
                 });
             } else {  
                 alert('Ouch - another one bites the dust. Try again on the next question.');
@@ -151,7 +150,6 @@ function answerListen() {
                         answer.style.background = 'black';   
                     }
                     answer.style["pointer-events"] = 'none';
-                    document.querySelector('.nextQuestion').style.display = 'visible';
                      });
             }
             if (answer = event.target) {
@@ -159,6 +157,7 @@ function answerListen() {
                 event.target.background = 'white';
                 event.target.color = 'black';  
             } 
+            document.querySelector('.nextQuestion').style.display = 'block';
         }) 
     )}
 

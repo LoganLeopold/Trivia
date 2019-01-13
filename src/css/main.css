@@ -116,7 +116,7 @@ h1 {
     font-size: 3vmin;
     font-family: 'royal_acidregular';
     color: white;
-    /* display: none; */
+    display: none;
     /* grid-column: 9 / span 4; */
 }
 
