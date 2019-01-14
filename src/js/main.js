@@ -34,77 +34,77 @@ const questions = [
         rightAnswer: "Pharrell Williams",
     },
 
-    {
-        questionNum: 3,
-        questionAsk: "Who is Gordon Matthew Thomas Sumner?",
-        answer1: "Sting",
-        answer2: "Nat King Cole",
-        answer3: "Prince",
-        rightAnswer: "Sting",
-    },
+    // {
+    //     questionNum: 3,
+    //     questionAsk: "Who is Gordon Matthew Thomas Sumner?",
+    //     answer1: "Sting",
+    //     answer2: "Nat King Cole",
+    //     answer3: "Prince",
+    //     rightAnswer: "Sting",
+    // },
 
-    {
-        questionNum: 4,
-        questionAsk: "How old was Bono when U2 collectively agree they formed?",
-        answer1: "24",
-        answer2: "16",
-        answer3: "20",
-        rightAnswer: "16",
-    },
+    // {
+    //     questionNum: 4,
+    //     questionAsk: "How old was Bono when U2 collectively agree they formed?",
+    //     answer1: "24",
+    //     answer2: "16",
+    //     answer3: "20",
+    //     rightAnswer: "16",
+    // },
 
-    {
-        questionNum: 5,
-        questionAsk: "The Stradivarius is a make of which kind of instrument?",
-        answer1: "Guitar",
-        answer2: "Violin",
-        answer3: "Piano",
-        rightAnswer: "Violin",
-    },
+    // {
+    //     questionNum: 5,
+    //     questionAsk: "The Stradivarius is a make of which kind of instrument?",
+    //     answer1: "Guitar",
+    //     answer2: "Violin",
+    //     answer3: "Piano",
+    //     rightAnswer: "Violin",
+    // },
 
-    {
-        questionNum: 6,
-        questionAsk: "How many keys are on the modern concert piano?",
-        answer1: "62",
-        answer2: "76",
-        answer3: "88",
-        rightAnswer: "88",
-    },
+    // {
+    //     questionNum: 6,
+    //     questionAsk: "How many keys are on the modern concert piano?",
+    //     answer1: "62",
+    //     answer2: "76",
+    //     answer3: "88",
+    //     rightAnswer: "88",
+    // },
 
-    {
-        questionNum: 7,
-        questionAsk: "How did Joey Ramone pass away?",
-        answer1: "Lymphoma",
-        answer2: "Lung Cancer",
-        answer3: "Heart Disease",
-        rightAnswer: "Lymphoma",
-    },
+    // {
+    //     questionNum: 7,
+    //     questionAsk: "How did Joey Ramone pass away?",
+    //     answer1: "Lymphoma",
+    //     answer2: "Lung Cancer",
+    //     answer3: "Heart Disease",
+    //     rightAnswer: "Lymphoma",
+    // },
 
-    {
-        questionNum: 8,
-        questionAsk: "How many guitars are a part of John Mayer's collection?",
-        answer1: "755",
-        answer2: "200",
-        answer3: "50",
-        rightAnswer: "200",
-    },
+    // {
+    //     questionNum: 8,
+    //     questionAsk: "How many guitars are a part of John Mayer's collection?",
+    //     answer1: "755",
+    //     answer2: "200",
+    //     answer3: "50",
+    //     rightAnswer: "200",
+    // },
 
-    {
-        questionNum: 9,
-        questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
-        answer1: "Bob Dylan",
-        answer2: "Marvin Gaye",
-        answer3: "The Everly Brothers",
-        rightAnswer: "Bob Dylan",
-    },
+    // {
+    //     questionNum: 9,
+    //     questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
+    //     answer1: "Bob Dylan",
+    //     answer2: "Marvin Gaye",
+    //     answer3: "The Everly Brothers",
+    //     rightAnswer: "Bob Dylan",
+    // },
 
-    {
-        questionNum: 10,
-        questionAsk: "Ben Gibbert of Death Cab For Cutie is famous for what other hit song released through another project?",
-        answer1: "Transatlanticism",
-        answer2: "Such Great Heights",
-        answer3: "I Will Follow You Into The Dark",
-        rightAnswer: "Such Great Heights",
-    },
+    // {
+    //     questionNum: 10,
+    //     questionAsk: "Ben Gibbert of Death Cab For Cutie is famous for what other hit song released through another project?",
+    //     answer1: "Transatlanticism",
+    //     answer2: "Such Great Heights",
+    //     answer3: "I Will Follow You Into The Dark",
+    //     rightAnswer: "Such Great Heights",
+    // },
 
 ]
 
@@ -134,7 +134,6 @@ function answerListen() {
 
         event => {            
             event.preventDefault();
-            console.log(event.target)
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
                 event.target.style.background = 'white';
@@ -150,7 +149,7 @@ function answerListen() {
                         return false;
                       }
                     })
-                });                
+                });                           
             } else {  
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 currentAnswers.forEach(answer => { 
@@ -170,13 +169,18 @@ function answerListen() {
                             return false;
                           }
                         })
-                    });    
+                    });   
                   });
-                wrong++; 
+                wrong++;
             }
             document.querySelector('.nextQuestion').style.display = 'block';
+            if (count = 1) {
+                document.querySelector('.nextQuestion').innerHTML="Finish"
+            }
         }) 
-    )}
+    )
+};   
+
 
 function trivia() {
     presentQuestion();
@@ -188,8 +192,9 @@ function tally() {
 }
 
 document.querySelector('.nextQuestion').addEventListener('click', () => {
+    if (count < 1 ) {
     currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-    count++;
+    // count++;
     currentAnswers.forEach(answer => { 
         answer.style.background = 'red';
         answer.style.color = 'white';     
@@ -199,5 +204,28 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
     currentAnswers.forEach( answer => {
         answer.style['font-size'] = '3vmin'
     })
+    tally(); 
+  } else if (count = 1) {
+    document.querySelector('.gameBox').style.display = 'none';
+    document.querySelector('.finishBox').style.display = 'flex';
+    document.querySelector('.finishBox').appendChild(document.querySelector('.tallyBox'));
+    finished();
+  }   
+}); 
+
+document.querySelector('.finishButton').addEventListener('click', () => {
+    currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
+    currentAnswers.forEach(answer => { 
+        answer.style.background = 'red';
+        answer.style.color = 'white';     
+    })
+    document.querySelector('.nextQuestion').style.display = 'none';
+    presentQuestion();
+    currentAnswers.forEach( answer => {
+        answer.style['font-size'] = '3vmin'
+    })
+    right = 0;
+    wrong = 0;
+    count = 0;
     tally();
-})
+});

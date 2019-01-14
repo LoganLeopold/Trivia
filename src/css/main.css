@@ -130,3 +130,31 @@ h1 {
     color: red;
 }
 
+.finishBox {
+    display: none;
+    justify-content: center;
+    background: black;
+    margin: 10vmin;
+}
+
+.finishAlert {
+    margin: 4vmin;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background: red;
+    text-align: left;
+    font-size: 4vmin;
+    font-family: 'royal_acidregular';
+    font-weight: 50;
+    color: white;
+}
+
+.finishButton {
+    border: none;
+    background: transparent;
+    font-size: 4vmin;
+    margin: 2.5vmin;
+    font-family: 'royal_acidregular';
+    color: red;
+}
