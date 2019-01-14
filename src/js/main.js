@@ -34,23 +34,23 @@ const questions = [
         rightAnswer: "Pharrell Williams",
     },
 
-    // {
-    //     questionNum: 3,
-    //     questionAsk: "Who is Gordon Matthew Thomas Sumner?",
-    //     answer1: "Sting",
-    //     answer2: "Nat King Cole",
-    //     answer3: "Prince",
-    //     rightAnswer: "Sting",
-    // },
+    {
+        questionNum: 3,
+        questionAsk: "Who is Gordon Matthew Thomas Sumner?",
+        answer1: "Sting",
+        answer2: "Nat King Cole",
+        answer3: "Prince",
+        rightAnswer: "Sting",
+    },
 
-    // {
-    //     questionNum: 4,
-    //     questionAsk: "How old was Bono when U2 collectively agree they formed?",
-    //     answer1: "24",
-    //     answer2: "16",
-    //     answer3: "20",
-    //     rightAnswer: "16",
-    // },
+    {
+        questionNum: 4,
+        questionAsk: "How old was Bono when U2 collectively agree they formed?",
+        answer1: "24",
+        answer2: "16",
+        answer3: "20",
+        rightAnswer: "16",
+    },
 
     // {
     //     questionNum: 5,
@@ -173,10 +173,7 @@ function answerListen() {
                   });
                 wrong++;
             }
-            document.querySelector('.nextQuestion').style.display = 'block';
-            if (count = 1) {
-                document.querySelector('.nextQuestion').innerHTML="Finish"
-            }
+            document.querySelector('.nextQuestion').style.display = 'block';            
         }) 
     )
 };   
@@ -192,9 +189,9 @@ function tally() {
 }
 
 document.querySelector('.nextQuestion').addEventListener('click', () => {
-    if (count < 1 ) {
+    if (count < 2 ) {
     currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-    // count++;
+    count++;
     currentAnswers.forEach(answer => { 
         answer.style.background = 'red';
         answer.style.color = 'white';     
@@ -205,13 +202,45 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
         answer.style['font-size'] = '3vmin'
     })
     tally(); 
-  } else if (count = 1) {
+  } 
+  else if (count = 2) {
+    {
+        currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
+        count++;
+        currentAnswers.forEach(answer => { 
+            answer.style.background = 'red';
+            answer.style.color = 'white';     
+        })
+        document.querySelector('.nextQuestion').style.display = 'none';
+        presentQuestion();
+        currentAnswers.forEach( answer => {
+            answer.style['font-size'] = '3vmin'
+        })
+        tally(); 
+        document.querySelector('.nextQuestion').innerHTML = "Finish";
+      }
+  }
+  else {
     document.querySelector('.gameBox').style.display = 'none';
     document.querySelector('.finishBox').style.display = 'flex';
     document.querySelector('.finishBox').appendChild(document.querySelector('.tallyBox'));
-    finished();
-  }   
+    }
+    tally();
+    finished();   
 }); 
+
+
+function finished () {
+  if (right < 3) {
+    document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
+  }
+  else if (right > 8) {
+    documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
+  }
+  else {
+    document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
+  } 
+}
 
 document.querySelector('.finishButton').addEventListener('click', () => {
     currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
