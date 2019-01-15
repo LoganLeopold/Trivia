@@ -132,51 +132,51 @@ function answerListen() {
 
     currentAnswers.forEach(answer => answer.addEventListener('click',
 
-        event => {            
+        event => {
             event.preventDefault();
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
                 event.target.style.background = 'white';
                 event.target.style.color = 'red';
                 event.target.style["font-size"] = '4.5vmin';
-                answer.style["pointer-events"] = 'none';   
+                answer.style["pointer-events"] = 'none';
                 right++;
-                currentAnswers.forEach( answer => 
-                    {answer.addEventListener('keydown', function (event) {
-                      if (event.which === 13) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        return false;
-                      }
+                currentAnswers.forEach(answer => {
+                    answer.addEventListener('keydown', function (event) {
+                        if (event.which === 13) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            return false;
+                        }
                     })
-                });                           
-            } else {  
+                });
+            } else {
                 alert('Ouch - another one bites the dust. Try again on the next question.');
-                currentAnswers.forEach(answer => { 
+                currentAnswers.forEach(answer => {
                     if (questions[count].rightAnswer === answer.innerHTML) {
                         answer.style.background = 'white';
                         answer.style.color = 'red';
-                        answer.style["font-size"] = '4.5vmin';     
+                        answer.style["font-size"] = '4.5vmin';
                     }
                     event.target.style.background = 'black';
                     event.target.style.color = 'white';
                     answer.style["pointer-events"] = 'none';
-                    currentAnswers.forEach( answer => 
-                        {answer.addEventListener('keydown', function (event) {
-                          if (event.which === 13) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                            return false;
-                          }
+                    currentAnswers.forEach(answer => {
+                        answer.addEventListener('keydown', function (event) {
+                            if (event.which === 13) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                return false;
+                            }
                         })
-                    });   
-                  });
+                    });
+                });
                 wrong++;
             }
-            document.querySelector('.nextQuestion').style.display = 'block';            
-        }) 
+            document.querySelector('.nextQuestion').style.display = 'block';
+        })
     )
-};   
+};
 
 
 function trivia() {
@@ -189,68 +189,68 @@ function tally() {
 }
 
 document.querySelector('.nextQuestion').addEventListener('click', () => {
-    if (count < 2 ) {
-    currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-    count++;
-    currentAnswers.forEach(answer => { 
-        answer.style.background = 'red';
-        answer.style.color = 'white';     
-    })
-    document.querySelector('.nextQuestion').style.display = 'none';
-    presentQuestion();
-    currentAnswers.forEach( answer => {
-        answer.style['font-size'] = '3vmin'
-    })
-    tally(); 
-  } 
-  else if (count = 2) {
-    {
+    if (count < 2) {
         currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
         count++;
-        currentAnswers.forEach(answer => { 
+        currentAnswers.forEach(answer => {
             answer.style.background = 'red';
-            answer.style.color = 'white';     
+            answer.style.color = 'white';
         })
         document.querySelector('.nextQuestion').style.display = 'none';
         presentQuestion();
-        currentAnswers.forEach( answer => {
+        currentAnswers.forEach(answer => {
             answer.style['font-size'] = '3vmin'
         })
-        tally(); 
-        document.querySelector('.nextQuestion').innerHTML = "Finish";
-      }
-  }
-  else {
-    document.querySelector('.gameBox').style.display = 'none';
-    document.querySelector('.finishBox').style.display = 'flex';
-    document.querySelector('.finishBox').appendChild(document.querySelector('.tallyBox'));
+        tally();
     }
-    tally();
-    finished();   
-}); 
+    else if (count === 2) {
+        {
+            currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
+            count++;
+            currentAnswers.forEach(answer => {
+                answer.style.background = 'red';
+                answer.style.color = 'white';
+            })
+            document.querySelector('.nextQuestion').style.display = 'none';
+            presentQuestion();
+            currentAnswers.forEach(answer => {
+                answer.style['font-size'] = '3vmin'
+            })
+            tally();
+            document.querySelector('.nextQuestion').innerHTML = "Finish";
+        }
+    }
+    else if (count === 3) {
+        currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
+        document.querySelector('.gameBox').style.display = 'none';
+        document.querySelector('.finishBox').style.display = 'flex';
+        document.querySelector('.finishBox').appendChild(document.querySelector('.tallyBox'));
+        tally();
+    }
+});
 
 
-function finished () {
-  if (right < 3) {
-    document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
-  }
-  else if (right > 8) {
-    documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
-  }
-  else {
-    document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
-  } 
+function finished() {
+    if (right < 3) {
+        document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
+    }
+    else if (right > 8) {
+        documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
+    }
+    else {
+        document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
+    }
 }
 
 document.querySelector('.finishButton').addEventListener('click', () => {
     currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-    currentAnswers.forEach(answer => { 
+    currentAnswers.forEach(answer => {
         answer.style.background = 'red';
-        answer.style.color = 'white';     
+        answer.style.color = 'white';
     })
     document.querySelector('.nextQuestion').style.display = 'none';
     presentQuestion();
-    currentAnswers.forEach( answer => {
+    currentAnswers.forEach(answer => {
         answer.style['font-size'] = '3vmin'
     })
     right = 0;
@@ -258,3 +258,11 @@ document.querySelector('.finishButton').addEventListener('click', () => {
     count = 0;
     tally();
 });
+
+
+// db.restaurants.update(
+//   {name: "Tapped Gastropub"},
+//   {
+//     $set: {"address.street": "Laskin Road"}
+//   }
+// )
