@@ -52,59 +52,59 @@ const questions = [
         rightAnswer: "16",
     },
 
-    // {
-    //     questionNum: 5,
-    //     questionAsk: "The Stradivarius is a make of which kind of instrument?",
-    //     answer1: "Guitar",
-    //     answer2: "Violin",
-    //     answer3: "Piano",
-    //     rightAnswer: "Violin",
-    // },
+    {
+        questionNum: 5,
+        questionAsk: "The Stradivarius is a make of which kind of instrument?",
+        answer1: "Guitar",
+        answer2: "Violin",
+        answer3: "Piano",
+        rightAnswer: "Violin",
+    },
 
-    // {
-    //     questionNum: 6,
-    //     questionAsk: "How many keys are on the modern concert piano?",
-    //     answer1: "62",
-    //     answer2: "76",
-    //     answer3: "88",
-    //     rightAnswer: "88",
-    // },
+    {
+        questionNum: 6,
+        questionAsk: "How many keys are on the modern concert piano?",
+        answer1: "62",
+        answer2: "76",
+        answer3: "88",
+        rightAnswer: "88",
+    },
 
-    // {
-    //     questionNum: 7,
-    //     questionAsk: "How did Joey Ramone pass away?",
-    //     answer1: "Lymphoma",
-    //     answer2: "Lung Cancer",
-    //     answer3: "Heart Disease",
-    //     rightAnswer: "Lymphoma",
-    // },
+    {
+        questionNum: 7,
+        questionAsk: "How did Joey Ramone pass away?",
+        answer1: "Lymphoma",
+        answer2: "Lung Cancer",
+        answer3: "Heart Disease",
+        rightAnswer: "Lymphoma",
+    },
 
-    // {
-    //     questionNum: 8,
-    //     questionAsk: "How many guitars are a part of John Mayer's collection?",
-    //     answer1: "755",
-    //     answer2: "200",
-    //     answer3: "50",
-    //     rightAnswer: "200",
-    // },
+    {
+        questionNum: 8,
+        questionAsk: "How many guitars are a part of John Mayer's collection?",
+        answer1: "755",
+        answer2: "200",
+        answer3: "50",
+        rightAnswer: "200",
+    },
 
-    // {
-    //     questionNum: 9,
-    //     questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
-    //     answer1: "Bob Dylan",
-    //     answer2: "Marvin Gaye",
-    //     answer3: "The Everly Brothers",
-    //     rightAnswer: "Bob Dylan",
-    // },
+    {
+        questionNum: 9,
+        questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
+        answer1: "Bob Dylan",
+        answer2: "Marvin Gaye",
+        answer3: "The Everly Brothers",
+        rightAnswer: "Bob Dylan",
+    },
 
-    // {
-    //     questionNum: 10,
-    //     questionAsk: "Ben Gibbert of Death Cab For Cutie is famous for what other hit song released through another project?",
-    //     answer1: "Transatlanticism",
-    //     answer2: "Such Great Heights",
-    //     answer3: "I Will Follow You Into The Dark",
-    //     rightAnswer: "Such Great Heights",
-    // },
+    {
+        questionNum: 10,
+        questionAsk: "Ben Gibbert of Death Cab For Cutie is famous for what other hit song released through another project?",
+        answer1: "Transatlanticism",
+        answer2: "Such Great Heights",
+        answer3: "I Will Follow You Into The Dark",
+        rightAnswer: "Such Great Heights",
+    },
 
 ]
 
@@ -188,8 +188,20 @@ function tally() {
     document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
 }
 
+function finished() {
+    if (right < 3) {
+        document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
+    }
+    else if (right > 8) {
+        documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
+    }
+    else {
+        document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
+    }
+}
+
 document.querySelector('.nextQuestion').addEventListener('click', () => {
-    if (count < 2) {
+    if (count < 8) {
         currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
         count++;
         currentAnswers.forEach(answer => {
@@ -203,7 +215,7 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
         })
         tally();
     }
-    else if (count === 2) {
+    else if (count === 8) {
         {
             currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
             count++;
@@ -220,28 +232,16 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
             document.querySelector('.nextQuestion').innerHTML = "Finish";
         }
     }
-    else if (count === 3) {
+    else if (count === 9) {
         currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
         document.querySelector('.gameBox').style.display = 'none';
         document.querySelector('.finishBox').style.display = 'flex';
         document.querySelector('.finishBox').appendChild(document.querySelector('.tallyBox'));
         tally();
         finished();
+        count = 0;
     }
 });
-
-
-function finished() {
-    if (right < 3) {
-        document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
-    }
-    else if (right > 8) {
-        documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
-    }
-    else {
-        document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
-    }
-}
 
 document.querySelector('.finishButton').addEventListener('click', () => {
     currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
@@ -249,6 +249,8 @@ document.querySelector('.finishButton').addEventListener('click', () => {
         answer.style.background = 'red';
         answer.style.color = 'white';
     })
+    document.querySelector('.gameBox').style.display = 'flex';
+    document.querySelector('.finishBox').style.display = 'none';
     document.querySelector('.nextQuestion').style.display = 'none';
     presentQuestion();
     currentAnswers.forEach(answer => {
@@ -256,14 +258,9 @@ document.querySelector('.finishButton').addEventListener('click', () => {
     })
     right = 0;
     wrong = 0;
-    count = 0;
     tally();
+    var body = document.querySelector("body");
+    console.log(body);
+    body.insertBefore((document.querySelector('.tallyBox')), body.childNodes[4])
 });
 
-
-// db.restaurants.update(
-//   {name: "Tapped Gastropub"},
-//   {
-//     $set: {"address.street": "Laskin Road"}
-//   }
-// )
