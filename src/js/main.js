@@ -226,6 +226,7 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
         document.querySelector('.finishBox').style.display = 'flex';
         document.querySelector('.finishBox').appendChild(document.querySelector('.tallyBox'));
         tally();
+        finished();
     }
 });
 

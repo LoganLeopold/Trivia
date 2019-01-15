@@ -124,7 +124,7 @@ h1 {
     display: none;
     align-content: center;
     text-align: center;
-    position: absolute;
+    /* position: absolute; */
     background: white;
     font-family: Arial, Helvetica, sans-serif;
     color: red;
@@ -132,6 +132,7 @@ h1 {
 
 .finishBox {
     display: none;
+    flex-direction: column;
     justify-content: center;
     background: black;
     margin: 10vmin;
