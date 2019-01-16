@@ -4,8 +4,8 @@ var startButton = document.querySelector('.buttonStartGame');
 startButton.addEventListener('click', event => {
     event.preventDefault();
     document.querySelector('.startBox').style.display = 'none';
-    document.querySelector('.gameBox').style.display = 'flex';
-    document.querySelector('.tallyBox').style.display = 'inline';
+    gameBox.style.display = 'flex';
+    tallyBox.style.display = 'inline';
     tally();
     trivia();
 });
@@ -114,7 +114,13 @@ var right = 0;
 
 var wrong = 0;
 
+var gameBox = document.querySelector('.gameBox');
+
+var tallyBox = document.querySelector('.tallyBox')
+
 var currentAnswers = document.querySelectorAll('.gameAnswer');
+
+var nextQuestion = document.querySelector('.nextQuestion');
 
 function presentQuestion() {
 
@@ -136,9 +142,7 @@ function answerListen() {
             event.preventDefault();
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
-                event.target.style.background = 'white';
-                event.target.style.color = 'red';
-                event.target.style["font-size"] = '4.5vmin';
+                event.target.className = 'correctAnswer';
                 answer.style["pointer-events"] = 'none';
                 right++;
                 currentAnswers.forEach(answer => {
@@ -154,12 +158,9 @@ function answerListen() {
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 currentAnswers.forEach(answer => {
                     if (questions[count].rightAnswer === answer.innerHTML) {
-                        answer.style.background = 'white';
-                        answer.style.color = 'red';
-                        answer.style["font-size"] = '4.5vmin';
+                        answer.className = "correctAnswer";
                     }
-                    event.target.style.background = 'black';
-                    event.target.style.color = 'white';
+                   event.target.className = "wrongAnswer"
                     answer.style["pointer-events"] = 'none';
                     currentAnswers.forEach(answer => {
                         answer.addEventListener('keydown', function (event) {
@@ -173,7 +174,7 @@ function answerListen() {
                 });
                 wrong++;
             }
-            document.querySelector('.nextQuestion').style.display = 'block';
+            nextQuestion.style.display = 'block';
         })
     )
 };
@@ -185,7 +186,7 @@ function trivia() {
 }
 
 function tally() {
-    document.querySelector('.tallyBox').innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
+    tallyBox.innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
 }
 
 function finished() {
@@ -200,15 +201,18 @@ function finished() {
     }
 }
 
-document.querySelector('.nextQuestion').addEventListener('click', () => {
+nextQuestion.addEventListener('click', () => {
     if (count < 8) {
-        currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
+        currentAnswers.forEach(answer => { 
+            answer.style["pointer-events"] = 'all'; 
+            answer.className = "gameAnswer"
+        });
         count++;
         currentAnswers.forEach(answer => {
             answer.style.background = 'red';
             answer.style.color = 'white';
         })
-        document.querySelector('.nextQuestion').style.display = 'none';
+        nextQuestion.style.display = 'none';
         presentQuestion();
         currentAnswers.forEach(answer => {
             answer.style['font-size'] = '3vmin'
@@ -223,20 +227,20 @@ document.querySelector('.nextQuestion').addEventListener('click', () => {
                 answer.style.background = 'red';
                 answer.style.color = 'white';
             })
-            document.querySelector('.nextQuestion').style.display = 'none';
+            nextQuestion.style.display = 'none';
             presentQuestion();
             currentAnswers.forEach(answer => {
                 answer.style['font-size'] = '3vmin'
             })
             tally();
-            document.querySelector('.nextQuestion').innerHTML = "Finish";
+            nextQuestion.innerHTML = "Finish";
         }
     }
     else if (count === 9) {
         currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-        document.querySelector('.gameBox').style.display = 'none';
+        gameBox.style.display = 'none';
         document.querySelector('.finishBox').style.display = 'flex';
-        document.querySelector('.finishBox').appendChild(document.querySelector('.tallyBox'));
+        document.querySelector('.finishBox').appendChild(tallyBox);
         tally();
         finished();
         count = 0;
@@ -249,9 +253,9 @@ document.querySelector('.finishButton').addEventListener('click', () => {
         answer.style.background = 'red';
         answer.style.color = 'white';
     })
-    document.querySelector('.gameBox').style.display = 'flex';
+    gameBox.style.display = 'flex';
     document.querySelector('.finishBox').style.display = 'none';
-    document.querySelector('.nextQuestion').style.display = 'none';
+    nextQuestion.style.display = 'none';
     presentQuestion();
     currentAnswers.forEach(answer => {
         answer.style['font-size'] = '3vmin'
@@ -261,6 +265,6 @@ document.querySelector('.finishButton').addEventListener('click', () => {
     tally();
     var body = document.querySelector("body");
     console.log(body);
-    body.insertBefore((document.querySelector('.tallyBox')), body.childNodes[4])
+    body.insertBefore((tallyBox), body.childNodes[4])
 });
 
