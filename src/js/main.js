@@ -208,36 +208,28 @@ nextQuestion.addEventListener('click', () => {
             answer.className = "gameAnswer"
         });
         count++;
-        currentAnswers.forEach(answer => {
-            answer.style.background = 'red';
-            answer.style.color = 'white';
-        })
         nextQuestion.style.display = 'none';
         presentQuestion();
-        currentAnswers.forEach(answer => {
-            answer.style['font-size'] = '3vmin'
-        })
         tally();
     }
     else if (count === 8) {
         {
-            currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-            count++;
-            currentAnswers.forEach(answer => {
-                answer.style.background = 'red';
-                answer.style.color = 'white';
-            })
+            currentAnswers.forEach(answer => { 
+                answer.style["pointer-events"] = 'all'; 
+                answer.className = "gameAnswer"
+            });
+            nextQuestion.innerHTML = "Finish";
             nextQuestion.style.display = 'none';
             presentQuestion();
-            currentAnswers.forEach(answer => {
-                answer.style['font-size'] = '3vmin'
-            })
             tally();
-            nextQuestion.innerHTML = "Finish";
+            count++;
         }
     }
     else if (count === 9) {
-        currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
+        currentAnswers.forEach(answer => { 
+            answer.style["pointer-events"] = 'all'; 
+            answer.className = "gameBox"
+        });
         gameBox.style.display = 'none';
         document.querySelector('.finishBox').style.display = 'flex';
         document.querySelector('.finishBox').appendChild(tallyBox);
@@ -248,23 +240,18 @@ nextQuestion.addEventListener('click', () => {
 });
 
 document.querySelector('.finishButton').addEventListener('click', () => {
-    currentAnswers.forEach(answer => { answer.style["pointer-events"] = 'all'; });
-    currentAnswers.forEach(answer => {
-        answer.style.background = 'red';
-        answer.style.color = 'white';
-    })
+    currentAnswers.forEach(answer => { 
+        answer.style["pointer-events"] = 'all';    
+        answer.className = "gameBox";
+    });
     gameBox.style.display = 'flex';
     document.querySelector('.finishBox').style.display = 'none';
     nextQuestion.style.display = 'none';
     presentQuestion();
-    currentAnswers.forEach(answer => {
-        answer.style['font-size'] = '3vmin'
-    })
+    tally();
     right = 0;
     wrong = 0;
-    tally();
     var body = document.querySelector("body");
-    console.log(body);
     body.insertBefore((tallyBox), body.childNodes[4])
 });
 
