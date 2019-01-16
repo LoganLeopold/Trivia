@@ -1,5 +1,3 @@
-// ___________ Start phase view ___________ 
-
 // Establish the start button
 var startButton = document.querySelector('.buttonStartGame');
 
@@ -165,6 +163,7 @@ function answerListen() {
                 event.target.className = 'correctAnswer';
                 answer.style["pointer-events"] = 'none';
                 right++;
+                tally();
             // Loss scenario: alert user + change correct answer styling + change wrong answer styling +
             // prevent further click action until next question + increment wrong variable
             } else {
@@ -178,6 +177,7 @@ function answerListen() {
                     answer.style["pointer-events"] = 'none';
                 });
                 wrong++;
+                tally();
             }
             //Set nextquestion button style so it displays when it is presented next question
             nextQuestion.style.display = 'block';
@@ -205,9 +205,7 @@ nextQuestion.addEventListener('click', () => {
         //Do not display next question so question can't be incremented without an answer
         nextQuestion.style.display = 'none';
         //Reset gameBox inner html based on new count for the next question.
-        presentQuestion();
-        //Retally so accurate score is posted. 
-        tally();
+        presentQuestion(); 
     }
     //The count is already next to last here so on this click styling is set for the last question
     //so all elements present accordingly.
@@ -223,7 +221,6 @@ nextQuestion.addEventListener('click', () => {
             nextQuestion.style.display = 'none';
             //Same functionality as norm
             presentQuestion();
-            tally();
             count++;
         }
     }
@@ -239,8 +236,6 @@ nextQuestion.addEventListener('click', () => {
         //Upon "finish" display the finish box and insert the tally box into that DOM element
         document.querySelector('.finishBox').style.display = 'flex';
         document.querySelector('.finishBox').appendChild(tallyBox);
-        //Tally final score for finish page display upon "finish"
-        tally();
         //Upon "finish" this will push a message into the finish box to indicate
         //user's success or failure with further instructions
         finished();
