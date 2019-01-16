@@ -250,14 +250,21 @@ nextQuestion.addEventListener('click', () => {
     }
 });
 
+//Resets game and presents question 1 (questions[0]) on game view again.
 document.querySelector('.finishButton').addEventListener('click', () => {
+    //present the game box
     gameBox.style.display = 'flex';
+    //hide finish view
     document.querySelector('.finishBox').style.display = 'none';
+    //again do not display next question to avoid breaking game functionality
     nextQuestion.style.display = 'none';
+    //present first question and new tally
     presentQuestion();
     tally();
+    //reset tally
     right = 0;
     wrong = 0;
+    //put tallyBox back into gamebox for display during new game view
     var body = document.querySelector("body");
     body.insertBefore((tallyBox), body.childNodes[4])
 });
