@@ -140,20 +140,20 @@ function answerListen() {
 
         event => {
             event.preventDefault();
+            currentAnswers.forEach(answer => {
+                answer.addEventListener('keydown', function (event) {
+                    if (event.which === 13) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        return false;
+                    }
+                })
+            });
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
                 event.target.className = 'correctAnswer';
                 answer.style["pointer-events"] = 'none';
                 right++;
-                currentAnswers.forEach(answer => {
-                    answer.addEventListener('keydown', function (event) {
-                        if (event.which === 13) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                            return false;
-                        }
-                    })
-                });
             } else {
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 currentAnswers.forEach(answer => {
@@ -162,15 +162,6 @@ function answerListen() {
                     }
                    event.target.className = "wrongAnswer"
                     answer.style["pointer-events"] = 'none';
-                    currentAnswers.forEach(answer => {
-                        answer.addEventListener('keydown', function (event) {
-                            if (event.which === 13) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                                return false;
-                            }
-                        })
-                    });
                 });
                 wrong++;
             }
