@@ -1,18 +1,20 @@
+// ___________ Start phase view ___________ 
 
+// Establish the start button
 var startButton = document.querySelector('.buttonStartGame');
 
+//Clicking start button hides start view and displays game view
 startButton.addEventListener('click', event => {
     event.preventDefault();
     document.querySelector('.startBox').style.display = 'none';
     gameBox.style.display = 'flex';
     tallyBox.style.display = 'inline';
     tally();
-    trivia();
+    presentQuestion();
+    answerListen();
 });
 
-
-// The above is not going to be needed after the first page -until_reset-
-
+// Questions object storing questions and answers
 const questions = [
 
     {
@@ -108,12 +110,16 @@ const questions = [
 
 ]
 
+//Count of game
 var count = 0;
 
+//Right answer count
 var right = 0;
 
+//Wrong answer count
 var wrong = 0;
 
+//Establishing shorthand for DOM elements
 var gameBox = document.querySelector('.gameBox');
 
 var tallyBox = document.querySelector('.tallyBox')
@@ -122,6 +128,7 @@ var currentAnswers = document.querySelectorAll('.gameAnswer');
 
 var nextQuestion = document.querySelector('.nextQuestion');
 
+//Sending questions object info to the game view based on count variable
 function presentQuestion() {
 
     document.querySelector('#gameQuestion').innerHTML = (questions[count].questionAsk)
@@ -134,6 +141,7 @@ function presentQuestion() {
 
 }
 
+//Core game logic listens to answers to move game forward
 function answerListen() {
 
     currentAnswers.forEach(answer => answer.addEventListener('click',
@@ -141,6 +149,7 @@ function answerListen() {
         event => {
             event.preventDefault();
             currentAnswers.forEach(answer => {
+                //Prevent keydown from taking action after answer submitted (clicked)
                 answer.addEventListener('keydown', function (event) {
                     if (event.which === 13) {
                         event.preventDefault();
@@ -149,92 +158,99 @@ function answerListen() {
                     }
                 })
             });
+            // Win scenario: alert user + change correct answer styling + prevent further 
+            // click action until next question + increment right var
             if (event.target.innerHTML === questions[count].rightAnswer) {
                 alert('Way to go - you know you music! Move to the next question.');
                 event.target.className = 'correctAnswer';
                 answer.style["pointer-events"] = 'none';
                 right++;
+            // Loss scenario: alert user + change correct answer styling + change wrong answer styling +
+            // prevent further click action until next question + increment wrong variable
             } else {
                 alert('Ouch - another one bites the dust. Try again on the next question.');
                 currentAnswers.forEach(answer => {
                     if (questions[count].rightAnswer === answer.innerHTML) {
-                        answer.className = "correctAnswer";
+                      answer.className = "correctAnswer";
+                    } else {
+                      event.target.className = "wrongAnswer"  
                     }
-                   event.target.className = "wrongAnswer"
                     answer.style["pointer-events"] = 'none';
                 });
                 wrong++;
             }
+            //Set nextquestion button style so it displays when it is presented next question
             nextQuestion.style.display = 'block';
         })
     )
 };
 
-
-function trivia() {
-    presentQuestion();
-    answerListen();
-}
-
+//Tally box holds right and wrong variables as game score
 function tally() {
     tallyBox.innerHTML = `Tally Box Wrong: ${wrong} Right: ${right}`;
 }
 
-function finished() {
-    if (right < 3) {
-        document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
-    }
-    else if (right > 8) {
-        documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
-    }
-    else {
-        document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
-    }
-}
-
+//Next question event listener for near-game-end and game-end scenarios styling + logic. 
+//Upon clicking this button, styles are changed for presentation on the "next question":
 nextQuestion.addEventListener('click', () => {
+    //Most of the game questions behave on this "norm"
     if (count < 8) {
+        //Set answer buttons back to unanswered behavior + styling
         currentAnswers.forEach(answer => { 
             answer.style["pointer-events"] = 'all'; 
             answer.className = "gameAnswer"
         });
+        //Increment count so new question presents upon display
         count++;
+        //Do not display next question so question can't be incremented without an answer
         nextQuestion.style.display = 'none';
+        //Reset gameBox inner html based on new count for the next question.
         presentQuestion();
+        //Retally so accurate score is posted. 
         tally();
     }
+    //The count is already next to last here so on this click styling is set for the last question
+    //so all elements present accordingly.
     else if (count === 8) {
         {
             currentAnswers.forEach(answer => { 
                 answer.style["pointer-events"] = 'all'; 
                 answer.className = "gameAnswer"
             });
+            //Insert "finish" text so when button displays next it indicates end of game
             nextQuestion.innerHTML = "Finish";
+            //It should still not present upon game view before an answer is chosen
             nextQuestion.style.display = 'none';
+            //Same functionality as norm
             presentQuestion();
             tally();
             count++;
         }
     }
+    //Last question scenario styles elements for finish page and game reset
     else if (count === 9) {
+        //Upon game reset these will be ready to display question object info
         currentAnswers.forEach(answer => { 
             answer.style["pointer-events"] = 'all'; 
-            answer.className = "gameBox"
+            answer.className = "gameAnswer"
         });
+        //Upon "finish" gamebox is removed so finish box is alone on page
         gameBox.style.display = 'none';
+        //Upon "finish" display the finish box and insert the tally box into that DOM element
         document.querySelector('.finishBox').style.display = 'flex';
         document.querySelector('.finishBox').appendChild(tallyBox);
+        //Tally final score for finish page display upon "finish"
         tally();
+        //Upon "finish" this will push a message into the finish box to indicate
+        //user's success or failure with further instructions
         finished();
+        //This brings count to zero so upon "finish" if the user decides to try again
+        //the gamebox will present with the first question (questions[0])
         count = 0;
     }
 });
 
 document.querySelector('.finishButton').addEventListener('click', () => {
-    currentAnswers.forEach(answer => { 
-        answer.style["pointer-events"] = 'all';    
-        answer.className = "gameBox";
-    });
     gameBox.style.display = 'flex';
     document.querySelector('.finishBox').style.display = 'none';
     nextQuestion.style.display = 'none';
@@ -246,3 +262,15 @@ document.querySelector('.finishButton').addEventListener('click', () => {
     body.insertBefore((tallyBox), body.childNodes[4])
 });
 
+//Finished function sends message to user upon close of game. 
+function finished() {
+    if (right < 3) {
+        document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
+    }
+    else if (right > 8) {
+        documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
+    }
+    else {
+        document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
+    }
+}
