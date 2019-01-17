@@ -1,8 +1,8 @@
 
 @font-face {
     font-family: 'royal_acidregular';
-    src: url('../../trivia_fonts/royalacid-webfont.woff2') format('woff2'),
-         url('../../trivia_fonts/royalacid-webfont.woff') format('woff');
+    src: url('../trivia_fonts/royalacid-webfont.woff2') format('woff2'),
+         url('../trivia_fonts/royalacid-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -10,8 +10,8 @@
 
 @font-face {
     font-family: 'royal_acidbathoutline';
-    src: url('../../trivia_fonts/royalacid_o-webfont.woff2') format('woff2'),
-         url('../../trivia_fonts/royalacid_o-webfont.woff') format('woff');
+    src: url('../trivia_fonts/royalacid_o-webfont.woff2') format('woff2'),
+         url('../trivia_fonts/royalacid_o-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
