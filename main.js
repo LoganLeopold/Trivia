@@ -194,7 +194,7 @@ function tally() {
 //Upon clicking this button, styles are changed for presentation on the "next question":
 nextQuestion.addEventListener('click', () => {
     //Most of the game questions behave on this "norm"
-    if (count < 8) {
+    if (count <= 7) {
         //Set answer buttons back to unanswered behavior + styling
         currentAnswers.forEach(answer => { 
             answer.style["pointer-events"] = 'all'; 
@@ -209,7 +209,7 @@ nextQuestion.addEventListener('click', () => {
     }
     //The count is already next to last here so on this click styling is set for the last question
     //so all elements present accordingly.
-    else if (count === 8) {
+    else if (count === 8 ) {
         {
             currentAnswers.forEach(answer => { 
                 answer.style["pointer-events"] = 'all'; 
@@ -220,8 +220,8 @@ nextQuestion.addEventListener('click', () => {
             //It should still not present upon game view before an answer is chosen
             nextQuestion.style.display = 'none';
             //Same functionality as norm
-            presentQuestion();
             count++;
+            presentQuestion();            
         }
     }
     //Last question scenario styles elements for finish page and game reset
@@ -271,7 +271,7 @@ function finished() {
         document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
     }
     else if (right > 8) {
-        documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
+        document.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
     }
     else {
         document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
