@@ -249,6 +249,7 @@ nextQuestion.addEventListener('click', () => {
 document.querySelector('.finishButton').addEventListener('click', () => {
     //present the game box
     gameBox.style.display = 'flex';
+    nextQuestion.innerHTML = 'Next Question';
     //hide finish view
     document.querySelector('.finishBox').style.display = 'none';
     //again do not display next question to avoid breaking game functionality
