@@ -20,7 +20,6 @@
 body {
     background: white;
     display: flex;
-    /* justify-content: flex-start; */
     flex-direction: column;
 }
 
@@ -65,11 +64,7 @@ h1 {
     display: none;
     justify-content: center;
     flex-direction: column;
-    /* grid-template-rows: 1fr;
-    grid-template-columns: repeat(12, 1fr); */
     background: red;
-    
-    /* margin: 12vmin; */
 }
 
 #gameQuestion {
@@ -114,7 +109,6 @@ h1 {
     font-family: 'royal_acidregular';
     color: white;
     display: none;
-    /* grid-column: 9 / span 4; */
 }
 
 .tallyBox {

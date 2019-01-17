@@ -72,7 +72,7 @@ const questions = [
 
     {
         questionNum: 7,
-        questionAsk: "How did Joey Ramone pass away?",
+        questionAsk: "What health issue lead to the passing of Joey Ramone?",
         answer1: "Lymphoma",
         answer2: "Lung Cancer",
         answer3: "Heart Disease",
@@ -81,7 +81,7 @@ const questions = [
 
     {
         questionNum: 8,
-        questionAsk: "How many guitars are a part of John Mayer's collection?",
+        questionAsk: "How many guitars are a part of John Mayer's personal collection?",
         answer1: "755",
         answer2: "200",
         answer3: "50",
@@ -90,7 +90,7 @@ const questions = [
 
     {
         questionNum: 9,
-        questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
+        questionAsk: "While made famous by Jimi Hendrix, 'All Along The Watchtower' was originally written by who?",
         answer1: "Bob Dylan",
         answer2: "Marvin Gaye",
         answer3: "The Everly Brothers",

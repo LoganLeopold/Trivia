@@ -20,4 +20,25 @@ As I sorted out scripting some of the features, I learned a great deal about con
 
 ## Installation
 
-For this project, since it is vanilla versions of all of these languages
+This project uses vanilla versions of all of these languages (HTML, CSS, JavaScript) so no installations are necessary for viewing or manipulating your own version of the DOM. 
+
+**One caveat to this is the font** This can be found in the trivia_fonts directory but it is a great approximation of the font used by Rolling Stone Magazine in their iconic masthead. Huge thanks to Dennis Ludlow (http://www.sharkshock.net) for creating a great resource and distributing it freely. 
+
+## Unsolved Prolems + Further Development
+
+Thankfully, I was able to sort out everything that was reasonable to achieve that comees to mind. This project was really fun and satisfying, but I persist as part of a great tradition of devs who are not satisfied with the final deployed product. It is a work in progress. I would like to make the styling stronger by:
+
+  -Using Javascript to carry out behavior of shading/highlighting wrong and correct answers.
+  -Working in imagery. 
+  -Taking time to find a more modern color pallete that more clearly plays on the Rolling Stone motif.
+
+I would love to continue working on features or improvements to user experience including, but not limited to:
+
+  -A timer for each question that would give the user "x" amount of seconds to make a decision before their answer is counted wrong.
+  -A reset button that is always present and can start the game over.
+  -Randomizing questions.
+  -Simply coming up with more questions *or* - in the perfect world - finding a database of music trivia questions somewhere I can implement a server to query.
+  **Update: totally does exist - shouldn've known better not to trust the internet for resource. Can start here: https://opentdb.com/api_config.php**
+  -An overall more interactive website experience (this will also include CSS touches). 
+
+Thank you for giving the project a look - feel free to fork and clone with finished product creditng my original repo. 
