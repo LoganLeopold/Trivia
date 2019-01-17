@@ -254,12 +254,13 @@ document.querySelector('.finishButton').addEventListener('click', () => {
     document.querySelector('.finishBox').style.display = 'none';
     //again do not display next question to avoid breaking game functionality
     nextQuestion.style.display = 'none';
-    //present first question and new tally
-    presentQuestion();
-    tally();
     //reset tally
     right = 0;
     wrong = 0;
+    //present first question and new tally
+    presentQuestion();
+    tally();
+   
     //put tallyBox back into gamebox for display during new game view
     var body = document.querySelector("body");
     body.insertBefore((tallyBox), body.childNodes[4])
