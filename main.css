@@ -113,7 +113,7 @@ h1 {
 
 .tallyBox {
     display: none;
-    margin-bottom: 1vw;
+    margin-bottom: 1vmin;
     align-content: center;
     background: white;
     text-align: center;
@@ -178,4 +178,8 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
     color: white;
+}
+
+title {
+    margin: 7vh 0 0 0;
 }
