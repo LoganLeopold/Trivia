@@ -72,7 +72,7 @@ const questions = [
 
     {
         questionNum: 7,
-        questionAsk: "How did Joey Ramone pass away?",
+        questionAsk: "What health issue lead to the passing of Joey Ramone?",
         answer1: "Lymphoma",
         answer2: "Lung Cancer",
         answer3: "Heart Disease",
@@ -81,7 +81,7 @@ const questions = [
 
     {
         questionNum: 8,
-        questionAsk: "How many guitars are a part of John Mayer's collection?",
+        questionAsk: "How many guitars are a part of John Mayer's personal collection?",
         answer1: "755",
         answer2: "200",
         answer3: "50",
@@ -90,7 +90,7 @@ const questions = [
 
     {
         questionNum: 9,
-        questionAsk: "While made famous by Jimi Hendrix, 'ALl Along The Watchtower' was originally written by who?",
+        questionAsk: "While made famous by Jimi Hendrix, 'All Along The Watchtower' was originally written by who?",
         answer1: "Bob Dylan",
         answer2: "Marvin Gaye",
         answer3: "The Everly Brothers",
@@ -194,7 +194,7 @@ function tally() {
 //Upon clicking this button, styles are changed for presentation on the "next question":
 nextQuestion.addEventListener('click', () => {
     //Most of the game questions behave on this "norm"
-    if (count < 8) {
+    if (count <= 7) {
         //Set answer buttons back to unanswered behavior + styling
         currentAnswers.forEach(answer => { 
             answer.style["pointer-events"] = 'all'; 
@@ -209,7 +209,7 @@ nextQuestion.addEventListener('click', () => {
     }
     //The count is already next to last here so on this click styling is set for the last question
     //so all elements present accordingly.
-    else if (count === 8) {
+    else if (count === 8 ) {
         {
             currentAnswers.forEach(answer => { 
                 answer.style["pointer-events"] = 'all'; 
@@ -220,8 +220,8 @@ nextQuestion.addEventListener('click', () => {
             //It should still not present upon game view before an answer is chosen
             nextQuestion.style.display = 'none';
             //Same functionality as norm
-            presentQuestion();
             count++;
+            presentQuestion();            
         }
     }
     //Last question scenario styles elements for finish page and game reset
@@ -249,16 +249,18 @@ nextQuestion.addEventListener('click', () => {
 document.querySelector('.finishButton').addEventListener('click', () => {
     //present the game box
     gameBox.style.display = 'flex';
+    nextQuestion.innerHTML = 'Next Question';
     //hide finish view
     document.querySelector('.finishBox').style.display = 'none';
     //again do not display next question to avoid breaking game functionality
     nextQuestion.style.display = 'none';
-    //present first question and new tally
-    presentQuestion();
-    tally();
     //reset tally
     right = 0;
     wrong = 0;
+    //present first question and new tally
+    presentQuestion();
+    tally();
+   
     //put tallyBox back into gamebox for display during new game view
     var body = document.querySelector("body");
     body.insertBefore((tallyBox), body.childNodes[4])
@@ -270,7 +272,7 @@ function finished() {
         document.querySelector('.finishAlert').innerHTML = "You've got some serious music learnin to do. Reset to try again.";
     }
     else if (right > 8) {
-        documemnt.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
+        document.querySelector('.finishAlert').innerHTML = "Right on - keep rollin' rock star.";
     }
     else {
         document.querySelector('.finishAlert').innerHTML = "Hmmm - keep tryin. There's still some groovin room. Reset for another play-through."
